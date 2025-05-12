@@ -1,9 +1,13 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const NavBar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
@@ -19,25 +23,37 @@ const NavBar = () => {
         <nav className="flex items-center space-x-4 lg:space-x-6 mx-6">
           <Link
             to="/"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              currentPath === "/" ? "text-foreground" : "text-muted-foreground"
+            )}
           >
             Dashboard
           </Link>
           <Link
             to="/candidates"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              currentPath === "/candidates" ? "text-foreground" : "text-muted-foreground"
+            )}
           >
             Candidates
           </Link>
           <Link
             to="/jobs"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              currentPath === "/jobs" ? "text-foreground" : "text-muted-foreground"
+            )}
           >
             Jobs
           </Link>
           <Link
             to="/analytics"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              currentPath === "/analytics" ? "text-foreground" : "text-muted-foreground"
+            )}
           >
             Analytics
           </Link>

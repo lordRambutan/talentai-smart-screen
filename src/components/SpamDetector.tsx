@@ -41,9 +41,6 @@ const SpamDetector = ({ spamProbability }: SpamDetectorProps) => {
           "h-2", 
           spamProbability < 0.3 ? "bg-green-100" : spamProbability < 0.7 ? "bg-amber-100" : "bg-red-100"
         )}
-        indicatorClassName={cn(
-          spamProbability < 0.3 ? "bg-green-500" : spamProbability < 0.7 ? "bg-amber-500" : "bg-red-500"
-        )}
       />
 
       <div className="text-xs text-muted-foreground">

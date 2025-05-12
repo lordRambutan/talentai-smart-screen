@@ -42,9 +42,6 @@ const SkillMatch = ({ jobMatch, skills, requiredSkills = ["JavaScript", "React",
           "h-2", 
           jobMatch >= 0.8 ? "bg-green-100" : jobMatch >= 0.6 ? "bg-amber-100" : "bg-red-100"
         )}
-        indicatorClassName={cn(
-          jobMatch >= 0.8 ? "bg-green-500" : jobMatch >= 0.6 ? "bg-amber-500" : "bg-red-500"
-        )}
       />
       
       <div className="pt-2">
