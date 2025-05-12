@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import NavBar from "@/components/NavBar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,7 @@ import DataTable from "@/components/DataTable";
 import SearchAndFilter from "@/components/SearchAndFilter";
 import JobCard from "@/components/JobCard";
 import { mockJobs, Job } from "@/lib/mockData";
+import { Plus, LayoutGrid, List } from "lucide-react";
 
 const Jobs = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -166,7 +168,7 @@ const Jobs = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background animate-fade-in">
       <NavBar />
       <div className="container py-8 space-y-6">
         <div className="flex items-center justify-between">
@@ -174,17 +176,26 @@ const Jobs = () => {
           <div className="flex space-x-2">
             <Button
               variant={viewMode === "table" ? "default" : "outline"}
+              size="icon"
               onClick={() => setViewMode("table")}
+              className="hidden sm:flex"
             >
-              Table View
+              <List className="h-4 w-4" />
             </Button>
             <Button
               variant={viewMode === "grid" ? "default" : "outline"}
+              size="icon"
               onClick={() => setViewMode("grid")}
+              className="hidden sm:flex"
             >
-              Grid View
+              <LayoutGrid className="h-4 w-4" />
             </Button>
-            <Button variant="default">New Job Post</Button>
+            <Button asChild>
+              <Link to="/jobs/new" className="flex items-center gap-1">
+                <Plus className="h-4 w-4" /> 
+                <span>New Job Post</span>
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -192,21 +203,29 @@ const Jobs = () => {
           filterOptions={filterOptions}
           onSearch={handleSearch}
           onFilter={handleFilter}
+          className="animate-slide-in"
         />
 
         {filteredJobs.length === 0 ? (
-          <div className="text-center py-8">
+          <div className="text-center py-8 animate-fade-in">
             <h3 className="text-lg font-medium">No jobs match your filters</h3>
             <p className="text-muted-foreground">Try adjusting your search or filter criteria</p>
+            <Button asChild className="mt-4">
+              <Link to="/jobs/new">
+                Create Your First Job Post
+              </Link>
+            </Button>
           </div>
         ) : (
           viewMode === "table" ? (
-            <DataTable 
-              data={filteredJobs} 
-              columns={columns} 
-            />
+            <div className="animate-fade-in">
+              <DataTable 
+                data={filteredJobs} 
+                columns={columns}
+              />
+            </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
               {filteredJobs.map(job => (
                 <JobCard
                   key={job.id}
