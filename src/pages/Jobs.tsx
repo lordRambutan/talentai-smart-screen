@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/NavBar";
@@ -8,7 +7,7 @@ import DataTable from "@/components/DataTable";
 import SearchAndFilter from "@/components/SearchAndFilter";
 import JobCard from "@/components/JobCard";
 import { mockJobs, Job } from "@/lib/mockData";
-import { Plus, LayoutGrid, List } from "lucide-react";
+import { PlusCircle, LayoutGrid, List } from "lucide-react";
 
 const Jobs = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -168,32 +167,16 @@ const Jobs = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background animate-fade-in">
+    <div className="min-h-screen flex flex-col bg-background">
       <NavBar />
-      <div className="container py-8 space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Jobs</h1>
-          <div className="flex space-x-2">
-            <Button
-              variant={viewMode === "table" ? "default" : "outline"}
-              size="icon"
-              onClick={() => setViewMode("table")}
-              className="hidden sm:flex"
-            >
-              <List className="h-4 w-4" />
-            </Button>
-            <Button
-              variant={viewMode === "grid" ? "default" : "outline"}
-              size="icon"
-              onClick={() => setViewMode("grid")}
-              className="hidden sm:flex"
-            >
-              <LayoutGrid className="h-4 w-4" />
-            </Button>
-            <Button asChild>
-              <Link to="/jobs/new" className="flex items-center gap-1">
-                <Plus className="h-4 w-4" /> 
-                <span>New Job Post</span>
+      <div className="container py-8 space-y-6 flex-1">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <h1 className="text-2xl font-bold">Job Listings</h1>
+          <div className="flex items-center gap-3">
+            <Button asChild variant="default" size="sm">
+              <Link to="/jobs/new" className="flex items-center gap-2">
+                <PlusCircle className="h-4 w-4" />
+                <span>Create New Job</span>
               </Link>
             </Button>
           </div>
@@ -203,7 +186,6 @@ const Jobs = () => {
           filterOptions={filterOptions}
           onSearch={handleSearch}
           onFilter={handleFilter}
-          className="animate-slide-in"
         />
 
         {filteredJobs.length === 0 ? (

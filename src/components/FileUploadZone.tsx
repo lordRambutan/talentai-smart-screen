@@ -96,7 +96,7 @@ const FileUploadZone = ({ onFileProcessed }: { onFileProcessed: (data: any) => v
     <div
       className={`w-full rounded-lg border-2 border-dashed p-10 text-center transition-all ${
         isDragging ? "border-primary bg-primary/5" : "border-border"
-      } ${isProcessing ? "opacity-50" : ""}`}
+      } ${isProcessing ? "opacity-50" : ""} bg-background`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -120,7 +120,7 @@ const FileUploadZone = ({ onFileProcessed }: { onFileProcessed: (data: any) => v
           />
         </svg>
 
-        <h3 className="mb-2 text-lg font-semibold">Upload Resume</h3>
+        <h3 className="mb-2 text-lg font-semibold text-foreground">Upload Resume</h3>
         <p className="mb-4 text-sm text-muted-foreground max-w-md">
           Drag and drop a PDF or Word document here, or click the button below to
           select a file for AI-powered parsing and analysis
